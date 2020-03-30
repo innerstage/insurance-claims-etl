@@ -2,6 +2,8 @@ import pandas as pd
 import xmltodict
 import json
 import os
+import us
+import csv
 
 from bamboo_lib.helpers import grab_connector
 from bamboo_lib.logger import logger
@@ -49,7 +51,11 @@ class TransformStep(PipelineStep):
 
         df = df.rename(columns=column_names)
 
-        df = df[["week_ended","reflecting_week_end","state_name","initial_claims",
+        # US Mapping
+        fips_map = us.states.mapping("name","fips")
+        df["fips_code"] = "04000US" + df["state_name"].map(fips_map)
+
+        df = df[["week_ended","reflecting_week_end","fips_code","state_name","initial_claims",
                  "continued_claims","covered_employment","insured_unemployment_rate"]]
 
         for c in ["week_ended", "reflecting_week_end"]:
@@ -59,8 +65,10 @@ class TransformStep(PipelineStep):
             df[c] = df[c].str.replace(",","").astype("int64")
 
         df["insured_unemployment_rate"] = df["insured_unemployment_rate"].astype("float64")
-        
-        
+
+        # Append to CVS
+        df.to_csv("output.csv", index=False, mode="a", quoting=csv.QUOTE_NONNUMERIC)
+
         return df
 
 
@@ -92,13 +100,13 @@ class UnemploymentPipeline(EasyPipeline):
 
 
 if __name__ == "__main__":
-    filenames = list(os.listdir("unemployment_data"))
+    filenames = sorted(list(os.listdir("unemployment_data")))
     for f in filenames:
         unemployment_pipeline = UnemploymentPipeline()
         unemployment_pipeline.run(
             {
                 "state": f,
                 "db": "postgres-local",
-                "ingest": True
+                "ingest": False
             }
         )
