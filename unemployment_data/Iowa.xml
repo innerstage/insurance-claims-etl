@@ -1,5 +1,5 @@
 <?xml-stylesheet type="text/xsl" href="http://10.49.1.34/xsl/r539cy_state.xsl"?>
-<r539cyState rundate="3/27/2020">
+<r539cyState rundate="4/2/2020">
 	<week>
 		<stateName>Iowa</stateName>
 		<weekEnded>01/03/1987</weekEnded>
@@ -15596,5 +15596,14 @@
 		<ContinuedClaims>27,816</ContinuedClaims>
 		<CoveredEmployment>1,530,920</CoveredEmployment>
 		<InsuredUnemploymentRate>1.82</InsuredUnemploymentRate>
+	</week>
+	<week>
+		<stateName>Iowa</stateName>
+		<weekEnded>03/21/2020</weekEnded>
+		<InitialClaims>40,952</InitialClaims>
+		<ReflectingWeekEnded>03/14/2020</ReflectingWeekEnded>
+		<ContinuedClaims>26,496</ContinuedClaims>
+		<CoveredEmployment>1,530,920</CoveredEmployment>
+		<InsuredUnemploymentRate>1.73</InsuredUnemploymentRate>
 	</week>
 </r539cyState>

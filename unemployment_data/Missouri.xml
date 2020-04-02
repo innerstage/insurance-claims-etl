@@ -1,5 +1,5 @@
 <?xml-stylesheet type="text/xsl" href="http://10.49.1.34/xsl/r539cy_state.xsl"?>
-<r539cyState rundate="3/27/2020">
+<r539cyState rundate="4/2/2020">
 	<week>
 		<stateName>Missouri</stateName>
 		<weekEnded>01/03/1987</weekEnded>
@@ -15578,5 +15578,14 @@
 		<ContinuedClaims>22,381</ContinuedClaims>
 		<CoveredEmployment>2,749,100</CoveredEmployment>
 		<InsuredUnemploymentRate>0.81</InsuredUnemploymentRate>
+	</week>
+	<week>
+		<stateName>Missouri</stateName>
+		<weekEnded>03/21/2020</weekEnded>
+		<InitialClaims>42,246</InitialClaims>
+		<ReflectingWeekEnded>03/14/2020</ReflectingWeekEnded>
+		<ContinuedClaims>21,538</ContinuedClaims>
+		<CoveredEmployment>2,749,100</CoveredEmployment>
+		<InsuredUnemploymentRate>0.78</InsuredUnemploymentRate>
 	</week>
 </r539cyState>

@@ -1,5 +1,5 @@
 <?xml-stylesheet type="text/xsl" href="http://10.49.1.34/xsl/r539cy_state.xsl"?>
-<r539cyState rundate="3/27/2020">
+<r539cyState rundate="4/2/2020">
 	<week>
 		<stateName>Hawaii</stateName>
 		<weekEnded>01/03/1987</weekEnded>
@@ -15560,5 +15560,14 @@
 		<ContinuedClaims>6,195</ContinuedClaims>
 		<CoveredEmployment>621,949</CoveredEmployment>
 		<InsuredUnemploymentRate>1.00</InsuredUnemploymentRate>
+	</week>
+	<week>
+		<stateName>Hawaii</stateName>
+		<weekEnded>03/21/2020</weekEnded>
+		<InitialClaims>8,815</InitialClaims>
+		<ReflectingWeekEnded>03/14/2020</ReflectingWeekEnded>
+		<ContinuedClaims>6,426</ContinuedClaims>
+		<CoveredEmployment>621,949</CoveredEmployment>
+		<InsuredUnemploymentRate>1.03</InsuredUnemploymentRate>
 	</week>
 </r539cyState>

@@ -1,5 +1,5 @@
 <?xml-stylesheet type="text/xsl" href="http://10.49.1.34/xsl/r539cy_state.xsl"?>
-<r539cyState rundate="3/27/2020">
+<r539cyState rundate="4/2/2020">
 	<week>
 		<stateName>Minnesota</stateName>
 		<weekEnded>01/03/1987</weekEnded>
@@ -15596,5 +15596,14 @@
 		<ContinuedClaims>61,781</ContinuedClaims>
 		<CoveredEmployment>2,859,937</CoveredEmployment>
 		<InsuredUnemploymentRate>2.16</InsuredUnemploymentRate>
+	</week>
+	<week>
+		<stateName>Minnesota</stateName>
+		<weekEnded>03/21/2020</weekEnded>
+		<InitialClaims>115,773</InitialClaims>
+		<ReflectingWeekEnded>03/14/2020</ReflectingWeekEnded>
+		<ContinuedClaims>66,787</ContinuedClaims>
+		<CoveredEmployment>2,859,937</CoveredEmployment>
+		<InsuredUnemploymentRate>2.34</InsuredUnemploymentRate>
 	</week>
 </r539cyState>

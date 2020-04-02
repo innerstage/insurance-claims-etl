@@ -1,5 +1,5 @@
 <?xml-stylesheet type="text/xsl" href="http://10.49.1.34/xsl/r539cy_state.xsl"?>
-<r539cyState rundate="3/27/2020">
+<r539cyState rundate="4/2/2020">
 	<week>
 		<stateName>Delaware</stateName>
 		<weekEnded>01/03/1987</weekEnded>
@@ -15587,5 +15587,14 @@
 		<ContinuedClaims>5,310</ContinuedClaims>
 		<CoveredEmployment>443,288</CoveredEmployment>
 		<InsuredUnemploymentRate>1.20</InsuredUnemploymentRate>
+	</week>
+	<week>
+		<stateName>Delaware</stateName>
+		<weekEnded>03/21/2020</weekEnded>
+		<InitialClaims>10,776</InitialClaims>
+		<ReflectingWeekEnded>03/14/2020</ReflectingWeekEnded>
+		<ContinuedClaims>5,297</ContinuedClaims>
+		<CoveredEmployment>443,288</CoveredEmployment>
+		<InsuredUnemploymentRate>1.19</InsuredUnemploymentRate>
 	</week>
 </r539cyState>

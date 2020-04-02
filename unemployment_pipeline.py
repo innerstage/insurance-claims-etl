@@ -55,6 +55,7 @@ class TransformStep(PipelineStep):
         fips_map = us.states.mapping("name","fips")
         df["fips_code"] = "04000US" + df["state_name"].map(fips_map)
 
+        # Columns order and type
         df = df[["week_ended","reflecting_week_end","fips_code","state_name","initial_claims",
                  "continued_claims","covered_employment","insured_unemployment_rate"]]
 
@@ -65,9 +66,13 @@ class TransformStep(PipelineStep):
             df[c] = df[c].str.replace(",","").astype("int64")
 
         df["insured_unemployment_rate"] = df["insured_unemployment_rate"].astype("float64")
+        
+        # Sort by latest date
+        df = df.sort_values(by=["reflecting_week_end"], ascending=False)
 
         # Append to CVS
-        df.to_csv("output.csv", index=False, mode="a", quoting=csv.QUOTE_NONNUMERIC)
+        alabama_bool = params.get("state") == "Alabama.xml"
+        df.to_csv("./unemployment_output/partial_output.csv", header=alabama_bool, index=False, mode="a", quoting=csv.QUOTE_NONNUMERIC)
 
         return df
 
@@ -100,7 +105,9 @@ class UnemploymentPipeline(EasyPipeline):
 
 
 if __name__ == "__main__":
-    filenames = sorted(list(os.listdir("unemployment_data")))
+    if os.path.isfile("./unemployment_output/partial_output.csv"):
+        os.remove("./unemployment_output/partial_output.csv")
+    filenames = sorted([f for f in os.listdir("unemployment_data") if ".tsv" not in f])
     for f in filenames:
         unemployment_pipeline = UnemploymentPipeline()
         unemployment_pipeline.run(
@@ -110,3 +117,8 @@ if __name__ == "__main__":
                 "ingest": False
             }
         )
+
+    df = pd.read_csv("./unemployment_output/partial_output.csv")
+    df = df.sort_values(by=["reflecting_week_end","fips_code"], ascending=[False, True])
+    df.to_csv("./unemployment_output/partial_output.csv", index=False, quoting=csv.QUOTE_NONNUMERIC)
+    print(df.head())

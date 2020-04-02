@@ -1,5 +1,5 @@
 <?xml-stylesheet type="text/xsl" href="http://10.49.1.34/xsl/r539cy_state.xsl"?>
-<r539cyState rundate="3/27/2020">
+<r539cyState rundate="4/2/2020">
 	<week>
 		<stateName>West Virginia</stateName>
 		<weekEnded>01/03/1987</weekEnded>
@@ -15596,5 +15596,14 @@
 		<ContinuedClaims>15,394</ContinuedClaims>
 		<CoveredEmployment>670,051</CoveredEmployment>
 		<InsuredUnemploymentRate>2.30</InsuredUnemploymentRate>
+	</week>
+	<week>
+		<stateName>West Virginia</stateName>
+		<weekEnded>03/21/2020</weekEnded>
+		<InitialClaims>3,536</InitialClaims>
+		<ReflectingWeekEnded>03/14/2020</ReflectingWeekEnded>
+		<ContinuedClaims>14,154</ContinuedClaims>
+		<CoveredEmployment>670,051</CoveredEmployment>
+		<InsuredUnemploymentRate>2.11</InsuredUnemploymentRate>
 	</week>
 </r539cyState>
