@@ -27,7 +27,7 @@ pip install -r requirements.txt
 
 ## Step 1: Download new database information
 
-All database files should be inside a folder called `unemployment_data`, you need to create it if it's not there. You will find the database here: `https://oui.doleta.gov/unemploy/claims.asp`
+All database files should be inside a folder called `unemployment_data`, you need to create it if it's not there. You will find the database here: https://oui.doleta.gov/unemploy/claims.asp
 
 You need to check `State`, beginning year `1987`, ending year `2021` and the output format as `XML`. After that you can select a group of states and download the generated files to the `unemployment_data` folder. The first file (`A-M.xml`) should have states from `Alabama` to `Montana`, and the second one (`N-W.xml`) from `North Carolina` to `Wyoming`. You can select multiple states at once using `Shift + Down`.
 
@@ -41,9 +41,11 @@ python unemployment_pipeline.py
 ```
 If you have any issue here, check that only the correct XML files are being processed.
 
+**Note**: It's not the objective of this repository, but you can load the result of this pipeline to a local database instance if you set up a connection on `conns.yaml` correctly and make `ingest: True` on the pipeline script.
+
 ## Step 3: Getting data from the PDF file
 
-The latest data will be available at `https://www.dol.gov/ui/data.pdf`, you need to install `Tabula` to process the PDF file and extract the table with the advance claims, you can get it here: https://tabula.technology/
+The latest data will be available at https://www.dol.gov/ui/data.pdf, you need to install `Tabula` to process the PDF file and extract the table with the advance claims, you can get it here: https://tabula.technology/
 
 Once you install Tabula, it will ask you to import the PDF, and then you can click on `Autodetect Tables`, you need to make sure that only the `Advance State Claims - Not Seasonally Adjusted` table is selected by Tabula, if it's not, you can select the area of the table manually. 
 
@@ -90,7 +92,7 @@ If everything's okay, you can move to the next step.
 
 ## Step 6: Importing data to the Google Sheet/API Endpoint
 
-This step requires extra care so as not to delete the endpoint sheet. You can access the sheet here: `https://docs.google.com/spreadsheets/d/19SRb_CXUyNGj5xUtc6xnwtHLfBmmWJpHVnmsGv1JdUc/edit#gid=134214696`
+This step requires extra care so as not to delete the endpoint sheet. You can access the sheet here: https://docs.google.com/spreadsheets/d/19SRb_CXUyNGj5xUtc6xnwtHLfBmmWJpHVnmsGv1JdUc/edit#gid=134214696
 
 You can see there are three sheets: `All`, `Most Recent Year` and `Staging Sheet`, you ONLY need to work on `All`and the other sheets will update automatically. Carefully follow the next steps:
 
