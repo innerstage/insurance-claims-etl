@@ -13,9 +13,9 @@ from bamboo_lib.steps import LoadStep
 
 class OpenStep(PipelineStep):
     def run_step(self, prev, params):
-        logger.info("Processing {}".format(params.get("state")))
+        logger.info("Processing {}".format(params.get("filename")))
         
-        with open("unemployment_data/{}".format(params["state"]),"r") as file:
+        with open("unemployment_data/{}".format(params["filename"]),"r") as file:
             xml = file.read()
 
         xml_dict = xmltodict.parse(xml)
@@ -36,7 +36,7 @@ class OpenStep(PipelineStep):
 
 class TransformStep(PipelineStep):
     def run_step(self, prev, params):
-        logger.info("Transforming {}".format(params.get("state")))
+        logger.info("Transforming {}".format(params.get("filename")))
         df = prev
         
         column_names = {
@@ -71,7 +71,7 @@ class TransformStep(PipelineStep):
         df = df.sort_values(by=["reflecting_week_end"], ascending=False)
 
         # Append to CVS
-        alabama_bool = params.get("state") == "Alabama.xml"
+        alabama_bool = params.get("filename") == "A-M.xml"
         df.to_csv("./unemployment_output/partial_output.csv", header=alabama_bool, index=False, mode="a", quoting=csv.QUOTE_NONNUMERIC)
 
         return df
@@ -81,7 +81,7 @@ class UnemploymentPipeline(EasyPipeline):
     @staticmethod
     def parameter_list():
         return [
-            Parameter(name="state", dtype=str),
+            Parameter(name="filename", dtype=str),
             Parameter(name="db", dtype=str),
             Parameter(name="ingest", dtype=bool)
 		]
@@ -105,15 +105,17 @@ class UnemploymentPipeline(EasyPipeline):
 
 
 if __name__ == "__main__":
+
     if os.path.isfile("./unemployment_output/partial_output.csv"):
         os.remove("./unemployment_output/partial_output.csv")
-    filenames = sorted([f for f in os.listdir("unemployment_data") if ".tsv" not in f])
+
+    filenames = sorted([f for f in os.listdir("unemployment_data") if ".xml" in f])
     for f in filenames:
         unemployment_pipeline = UnemploymentPipeline()
         unemployment_pipeline.run(
             {
-                "state": f,
-                "db": "postgres-local",
+                "filename": f,
+                "db": "clickhouse-local",
                 "ingest": False
             }
         )
