@@ -3,14 +3,20 @@ import csv
 import us
 import numpy as np
 
+### CHANGE THE LAST WEEK OF INFORMATION HERE:
+last_week = "2020-04-18"
+#############################################
+
+weeks = pd.date_range(end=last_week, periods=2, freq='7D')
+weeks = [w.strftime("%Y-%m-%d") for w in weeks]
 
 def clean_advance_claims(filepath="./unemployment_data/advance_claims.tsv"):
 
     adv_df = pd.read_csv(filepath, sep="\t", header=0)
 
     df1 = pd.DataFrame({
-        "week_ended": "2020-04-04",	
-        "reflecting_week_end": "2020-03-28",	
+        "week_ended": weeks[1],	
+        "reflecting_week_end": weeks[0],	
         "fips_code": 0,
         "state_name": adv_df["State"],
         "initial_claims": adv_df["Advance"],
@@ -23,7 +29,10 @@ def clean_advance_claims(filepath="./unemployment_data/advance_claims.tsv"):
     df1["fips_code"] = "04000US" + df1["state_name"].map(fips_map)
 
     for c in ["initial_claims", "continued_claims"]:
-        df1[c] = df1[c].str.replace(",","").astype(int)
+        try:
+            df1[c] = df1[c].str.replace(",","").astype(int)
+        except:
+            pass
 
     df1["insured_unemployment_rate"] = df1["insured_unemployment_rate"].astype(float)
 
