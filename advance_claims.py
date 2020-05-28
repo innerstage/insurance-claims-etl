@@ -4,7 +4,7 @@ import us
 import numpy as np
 
 ### CHANGE THE LAST WEEK OF INFORMATION HERE:
-last_week = "2020-05-16"
+last_week = "2020-05-23"
 #############################################
 
 weeks = pd.date_range(end=last_week, periods=2, freq='7D')
