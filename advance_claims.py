@@ -7,7 +7,7 @@ import numpy as np
 last_week = "2020-06-06"
 #############################################
 
-weeks = pd.date_range(end=last_week, periods=2, freq='7D')
+weeks = pd.date_range(end=last_week, periods=3, freq='7D')
 weeks = [w.strftime("%Y-%m-%d") for w in weeks]
 
 def clean_advance_claims(filepath="./unemployment_data/advance_claims.tsv"):
@@ -15,8 +15,8 @@ def clean_advance_claims(filepath="./unemployment_data/advance_claims.tsv"):
     adv_df = pd.read_csv(filepath, sep="\t", header=0)
 
     df1 = pd.DataFrame({
-        "week_ended": weeks[1],	
-        "reflecting_week_end": weeks[0],	
+        "week_ended": weeks[2],	
+        "reflecting_week_end": weeks[1],	
         "fips_code": 0,
         "state_name": adv_df["State"],
         "initial_claims": adv_df["Advance"],
@@ -24,6 +24,19 @@ def clean_advance_claims(filepath="./unemployment_data/advance_claims.tsv"):
         "covered_employment": np.nan,
         "insured_unemployment_rate": np.nan
     })
+
+    df2 = pd.DataFrame({
+        "week_ended": weeks[1],	
+        "reflecting_week_end": weeks[0],
+        "fips_code": 0,
+        "state_name": adv_df["State"],
+        "initial_claims": adv_df["Prior Wk"],
+        "continued_claims": adv_df["Prior Wk.1"],
+        "covered_employment": np.nan,
+        "insured_unemployment_rate": np.nan
+    })
+
+    df1 = pd.concat([df1,df2])
 
     fips_map = us.states.mapping("name","fips")
     df1["fips_code"] = "04000US" + df1["state_name"].map(fips_map)
@@ -45,6 +58,7 @@ def clean_advance_claims(filepath="./unemployment_data/advance_claims.tsv"):
 def concatenate_and_save(df1):
     # Opens partial Output and Concatenate
     df2 = pd.read_csv("./unemployment_output/partial_output.csv")
+    df2 = df2[df2["week_ended"] < weeks[1]]
     print(df2.head())
     print(df2.dtypes)
 

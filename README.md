@@ -79,9 +79,9 @@ python advance_claims.py
 
 ## Step 5: Validate the output file against the PDF
 
-You can find a summary of the unemployment insurance data for regular state programs on the PDF file. The Python script `statistics.py` will find the aggregation for each week and you can compare against the `Initial Claims (NSA)` row of the summary. To run the script you have to change the last week of information on the variable `last_week` and then do:
+You can find a summary of the unemployment insurance data for regular state programs on the PDF file. The Python script `summary.py` will find the aggregation for each week and you can compare against the `Initial Claims (NSA)` row of the summary. To run the script you have to change the last week of information on the variable `last_week` and then do:
 ```
-python statistics.py
+python summary.py
 ```
 You can check the output of the script with the row on the PDF summary:
 
