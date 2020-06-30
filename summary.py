@@ -3,7 +3,7 @@ import pandas as pd
 df = pd.read_csv("./unemployment_output/full_output.csv")
 
 ### CHANGE THE LAST WEEK OF INFORMATION HERE:
-last_week = "2020-06-06"
+last_week = "2020-06-20"
 #############################################
 
 weeks = pd.date_range(end=last_week, periods=3, freq='7D')
