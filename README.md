@@ -94,7 +94,7 @@ If everything's okay, you can move to the next step.
 
 This step requires extra care so as not to delete the endpoint sheet. You can access the sheet here: https://docs.google.com/spreadsheets/d/19SRb_CXUyNGj5xUtc6xnwtHLfBmmWJpHVnmsGv1JdUc/edit#gid=134214696
 
-You can see there are three sheets: `All`, `Most Recent Year` and `Staging Sheet`, you ONLY need to work on `All`and the other sheets will update automatically. Carefully follow the next steps:
+You can see there are three sheets: `All`, `Most Recent Year` and `Staging Sheet`, you ONLY need to work on `All` and the other sheets will update automatically. Carefully follow the next steps:
 
 1. Place yourself on the A1 cell of `All`.
 2. Click on `File` > `Import` > `Upload` and select the `full_output.csv` file you generated.
